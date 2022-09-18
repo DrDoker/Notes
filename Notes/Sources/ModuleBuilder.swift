@@ -15,13 +15,13 @@ protocol BuilderProtocol {
 
 class ModuleBuilder: BuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController {
-        let model = Note.notes
+        let model = NotesGroup.notes
         let view = MenuViewController()
         let presenter = Presenter(view: view, notes: model, router: router)
         view.presenter = presenter
         return view
     }
-
+    
     func createDetailModule(note: Note?, router: RouterProtocol) -> UIViewController {
         let model = note
         let view = DetailViewController()
@@ -29,5 +29,5 @@ class ModuleBuilder: BuilderProtocol {
         view.presenter = presenter
         return view
     }
-
+    
 }
