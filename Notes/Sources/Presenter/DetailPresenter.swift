@@ -12,6 +12,8 @@ protocol DetailPresenterProtocol: AnyObject {
 
     init(view: DetailViewController, folder: NotesFolder?, router: RouterProtocol)
     func getNumberOfRow() -> Int
+    func getTitle(for index: IndexPath) -> String
+    func getText(for index: IndexPath) -> String
     func showNote(data: Note?)
 }
 
@@ -28,6 +30,14 @@ class DetailPresenter: DetailPresenterProtocol {
 
     func getNumberOfRow() -> Int {
         folder?.countNotes ?? 0
+    }
+
+    func getTitle(for index: IndexPath) -> String {
+        return folder?.folder[index.row].title ?? ""
+    }
+
+    func getText(for index: IndexPath) -> String {
+        return folder?.folder[index.row].text ?? ""
     }
 
     func showNote(data: Note?) {
