@@ -12,7 +12,7 @@ protocol FolderPresenterProtocol: AnyObject {
     func getTitle(for index: IndexPath) -> String
     func getText(for index: IndexPath) -> String
     func getFolderTitle() -> String
-    func showNote(index: IndexPath)
+    func showNote(for index: IndexPath)
 }
 
 class FolderPresenter: FolderPresenterProtocol {
@@ -42,7 +42,7 @@ class FolderPresenter: FolderPresenterProtocol {
         return folder?.title ?? ""
     }
 
-    func showNote(index: IndexPath) {
+    func showNote(for index: IndexPath) {
         let note = folder?.folder[index.row]
         router?.showNote(note: note)
     }
