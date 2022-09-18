@@ -14,7 +14,8 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showDetail(note: Note?)
+    func showDetail(folder: NotesFolder?)
+    func showNote(note: Note?)
     func popToRoot()
 }
 
@@ -34,10 +35,17 @@ class Router: RouterProtocol {
         }
     }
     
-    func showDetail(note: Note?) {
+    func showDetail(folder: NotesFolder?) {
         if let navigationController = navigationController {
-            guard let detailViewController = assemblyBuilder?.createDetailModule(note: note, router: self) else { return }
+            guard let detailViewController = assemblyBuilder?.createDetailModule(folder: folder, router: self) else { return }
             navigationController.pushViewController(detailViewController, animated: true)
+        }
+    }
+
+    func showNote(note: Note?) {
+        if let navigationController = navigationController {
+            guard let noteViewController = assemblyBuilder?.createNoteModule(note: note, router: self) else { return }
+            navigationController.pushViewController(noteViewController, animated: true)
         }
     }
     

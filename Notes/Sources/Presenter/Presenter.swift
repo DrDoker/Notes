@@ -8,35 +8,45 @@
 import Foundation
 
 protocol MainPresenterProtocol: AnyObject {
-    var notes: [NotesGroup] { get }
+    var goups: [NotesGroup] { get }
     
     init(view: MenuViewController, notes: [NotesGroup], router: RouterProtocol)
     func getNumberOfSections() -> Int
     func getNumberOfRow(section: Int) -> Int
-    func showDetail(data: Note?)
+    func getTitle(for index: IndexPath) -> String
+    func getCountNotes(for index: IndexPath) -> String
+    func showDetail(data: NotesFolder?)
 }
 
 class Presenter: MainPresenterProtocol {
-    
     weak var view: MenuViewController?
     var router: RouterProtocol?
-    let notes: [NotesGroup]
+    let goups: [NotesGroup]
     
     required init(view: MenuViewController, notes: [NotesGroup], router: RouterProtocol) {
         self.view = view
         self.router = router
-        self.notes = notes
+        self.goups = notes
     }
     
     func getNumberOfSections() -> Int {
-        notes.count
+        goups.count
     }
     
     func getNumberOfRow(section: Int) -> Int {
-        notes[section].group.count
+        goups[section].group.count
     }
-    
-    func showDetail(data: Note?) {
-        router?.showDetail(note: data)
+
+    func getTitle(for index: IndexPath) -> String {
+        return goups[index.section].group[index.row].title
+    }
+
+    func getCountNotes(for index: IndexPath) -> String {
+        let stringCounts = String(goups[index.section].group[index.row].countNotes)
+        return stringCounts
+    }
+
+    func showDetail(data: NotesFolder?) {
+        router?.showDetail(folder: data)
     }
 }

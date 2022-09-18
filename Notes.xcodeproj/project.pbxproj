@@ -12,12 +12,16 @@
 		9CB5D80428D3860D00CA38D0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D80328D3860D00CA38D0 /* SceneDelegate.swift */; };
 		9CB5D80628D3860D00CA38D0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D80528D3860D00CA38D0 /* MenuViewController.swift */; };
 		9CB5D80B28D3860D00CA38D0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9CB5D80A28D3860D00CA38D0 /* Assets.xcassets */; };
-		9CB5D81C28D3867200CA38D0 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D81B28D3867200CA38D0 /* Model.swift */; };
+		9CB5D81C28D3867200CA38D0 /* NotesGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D81B28D3867200CA38D0 /* NotesGroup.swift */; };
 		9CB5D81E28D3868100CA38D0 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB5D81D28D3868100CA38D0 /* Presenter.swift */; };
 		C5643DB328D50E350056837B /* ModuleBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5643DB228D50E350056837B /* ModuleBuilder.swift */; };
 		C5643DB728D534460056837B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5643DB628D534460056837B /* DetailViewController.swift */; };
 		C5643DB928D5367D0056837B /* DetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5643DB828D5367D0056837B /* DetailPresenter.swift */; };
 		C5643DBB28D667450056837B /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5643DBA28D667450056837B /* Router.swift */; };
+		C5654ACA28D731B200DCE2B0 /* NotesFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5654AC928D731B200DCE2B0 /* NotesFolder.swift */; };
+		C5654ACC28D731CF00DCE2B0 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5654ACB28D731CF00DCE2B0 /* Note.swift */; };
+		C5654ACE28D73E6200DCE2B0 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5654ACD28D73E6200DCE2B0 /* NoteViewController.swift */; };
+		C5654AD028D7444A00DCE2B0 /* NotePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5654ACF28D7444A00DCE2B0 /* NotePresenter.swift */; };
 		C5D9136A28D67EF4000DC18B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = C5D9136928D67EF4000DC18B /* SnapKit */; };
 /* End PBXBuildFile section */
 
@@ -29,12 +33,16 @@
 		9CB5D80528D3860D00CA38D0 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		9CB5D80A28D3860D00CA38D0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9CB5D80F28D3860D00CA38D0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9CB5D81B28D3867200CA38D0 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		9CB5D81B28D3867200CA38D0 /* NotesGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesGroup.swift; sourceTree = "<group>"; };
 		9CB5D81D28D3868100CA38D0 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		C5643DB228D50E350056837B /* ModuleBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleBuilder.swift; sourceTree = "<group>"; };
 		C5643DB628D534460056837B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C5643DB828D5367D0056837B /* DetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailPresenter.swift; sourceTree = "<group>"; };
 		C5643DBA28D667450056837B /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		C5654AC928D731B200DCE2B0 /* NotesFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesFolder.swift; sourceTree = "<group>"; };
+		C5654ACB28D731CF00DCE2B0 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
+		C5654ACD28D73E6200DCE2B0 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		C5654ACF28D7444A00DCE2B0 /* NotePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotePresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +125,9 @@
 		9CB5D81828D3865800CA38D0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9CB5D81B28D3867200CA38D0 /* Model.swift */,
+				9CB5D81B28D3867200CA38D0 /* NotesGroup.swift */,
+				C5654AC928D731B200DCE2B0 /* NotesFolder.swift */,
+				C5654ACB28D731CF00DCE2B0 /* Note.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -127,6 +137,7 @@
 			children = (
 				9CB5D80528D3860D00CA38D0 /* MenuViewController.swift */,
 				C5643DB628D534460056837B /* DetailViewController.swift */,
+				C5654ACD28D73E6200DCE2B0 /* NoteViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -136,6 +147,7 @@
 			children = (
 				9CB5D81D28D3868100CA38D0 /* Presenter.swift */,
 				C5643DB828D5367D0056837B /* DetailPresenter.swift */,
+				C5654ACF28D7444A00DCE2B0 /* NotePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -216,15 +228,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C8909F528D4635000148E78 /* String + ext.swift in Sources */,
+				C5654ACA28D731B200DCE2B0 /* NotesFolder.swift in Sources */,
 				9CB5D80628D3860D00CA38D0 /* MenuViewController.swift in Sources */,
+				C5654ACE28D73E6200DCE2B0 /* NoteViewController.swift in Sources */,
 				C5643DBB28D667450056837B /* Router.swift in Sources */,
 				C5643DB928D5367D0056837B /* DetailPresenter.swift in Sources */,
 				9CB5D80228D3860D00CA38D0 /* AppDelegate.swift in Sources */,
 				9CB5D80428D3860D00CA38D0 /* SceneDelegate.swift in Sources */,
 				C5643DB328D50E350056837B /* ModuleBuilder.swift in Sources */,
-				9CB5D81C28D3867200CA38D0 /* Model.swift in Sources */,
+				9CB5D81C28D3867200CA38D0 /* NotesGroup.swift in Sources */,
 				9CB5D81E28D3868100CA38D0 /* Presenter.swift in Sources */,
 				C5643DB728D534460056837B /* DetailViewController.swift in Sources */,
+				C5654AD028D7444A00DCE2B0 /* NotePresenter.swift in Sources */,
+				C5654ACC28D731CF00DCE2B0 /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
