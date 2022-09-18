@@ -19,7 +19,7 @@ protocol GroupsPresenterProtocol: AnyObject {
 class GroupsPresenter: GroupsPresenterProtocol {
     weak var view: MainGroupsViewController?
     var router: RouterProtocol?
-    let goups: [NotesGroup]
+    private let goups: [NotesGroup]
     
     required init(view: MainGroupsViewController, goups: [NotesGroup], router: RouterProtocol) {
         self.view = view
