@@ -17,33 +17,6 @@ struct NotesFolder {
 }
 
 extension NotesFolder {
-
-//    static let firstGoupFolders: [NotesFolder] = [
-//        NotesFolder(title: "Все iCloud",
-//                    folder: [Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text")
-//                            ]),
-//
-//        NotesFolder(title: "Общие",
-//                    folder: [Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text")
-//                            ]),
-//
-//        NotesFolder(title: "2021",
-//                    folder: [Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                             Note(title: "", text: "Note text"),
-//                            ])
-//    ]
-
     static var firstFolder: [NotesFolder] {
         var notes = [Note]()
         for i in NotesFolder.secondGoupFolders {
