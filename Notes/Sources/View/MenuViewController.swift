@@ -68,18 +68,6 @@ class MenuViewController: UIViewController {
     
 }
 
-extension MenuViewController {
-    func setNoteCell(notes: Note) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = notes.title
-        cell.detailTextLabel?.text = notes.subtitle
-        cell.imageView?.image = UIImage(systemName: "folder")
-        cell.tintColor = .systemYellow
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }
-}
-
 // MARK: - Extensions
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
@@ -93,8 +81,13 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let note = self.presenter?.notes[indexPath.section].group[indexPath.row] else { return UITableViewCell() }
-        return setNoteCell(notes: note)
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        cell.textLabel?.text = presenter?.getTitle(for: indexPath)
+        cell.detailTextLabel?.text = presenter?.getSubtitle(for: indexPath)
+        cell.imageView?.image = UIImage(systemName: presenter?.getImageForCell() ?? "")
+        cell.tintColor = .systemYellow
+        cell.accessoryType = .disclosureIndicator
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

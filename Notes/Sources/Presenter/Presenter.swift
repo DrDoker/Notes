@@ -13,6 +13,9 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MenuViewController, notes: [NotesGroup], router: RouterProtocol)
     func getNumberOfSections() -> Int
     func getNumberOfRow(section: Int) -> Int
+    func getTitle(for imdex: IndexPath) -> String
+    func getSubtitle(for imdex: IndexPath) -> String
+    func getImageForCell() -> String
     func showDetail(data: Note?)
 }
 
@@ -34,6 +37,18 @@ class Presenter: MainPresenterProtocol {
     
     func getNumberOfRow(section: Int) -> Int {
         notes[section].group.count
+    }
+
+    func getTitle(for index: IndexPath) -> String {
+        return notes[index.section].group[index.row].title
+    }
+
+    func getSubtitle(for index: IndexPath) -> String {
+        return notes[index.section].group[index.row].subtitle
+    }
+
+    func getImageForCell() -> String {
+        return "folder"
     }
     
     func showDetail(data: Note?) {
