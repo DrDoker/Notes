@@ -58,10 +58,10 @@ extension NotesFolder {
 
     static let secondGoupFolders: [NotesFolder] = [
         NotesFolder(title: "Личные",
-                    folder: [Note(title: "Фильмы", text: "Посмотреть фильмы: \n Мстители \n Крестный отец"),
+                    folder: [Note(title: "Фильмы", text: "Посмотреть фильмы: \nМстители \nКрестный отец"),
                              Note(title: "Ссылка на плейлист", text: "https://www.youtube.com/watch?v=FNTDQ6FJUqg&list=PLmTuDg46zmKD6nI5Meg0_atl0qY-UgTtP"),
-                             Note(title: "Продукты домой", text: "Молоко \n Хлеб \n Колбаса \n Овощи"),
-                             Note(title: "Список дел", text: "Погулять с собакой \n Протереть пыль \n Помыть посуду"),
+                             Note(title: "Продукты домой", text: "Молоко \nХлеб \nКолбаса \nОвощи"),
+                             Note(title: "Список дел", text: "Погулять с собакой \nПротереть пыль \nПомыть посуду"),
                              Note(title: "Презентация Apple осень", text: "Покажут iPhone 14 и новые вотчи"),
                              Note(title: "Код от домофона", text: "#194BBB31#"),
                             ]),
@@ -75,7 +75,7 @@ extension NotesFolder {
 
         NotesFolder(title: "Путешествия",
                     folder: [Note(title: "Европа", text: "Стоимость билетов - 620€, отель 470€, еда 120€. Общее - 1210€"),
-                             Note(title: "Отпуск", text: "Купить билеты до 23.11 \n Оплатить отель, узнать про парковку")
+                             Note(title: "Отпуск", text: "Купить билеты до 23.11 \nОплатить отель, узнать про парковку")
                             ]),
     ]
 
@@ -87,7 +87,7 @@ extension NotesFolder {
                             ]),
 
         NotesFolder(title: "Домашки",
-                    folder: [Note(title: "Доработки по ДЗ 11", text: "Файлы по папкам \n Расширения в один класс \n Убрать лишние пробелы"),
+                    folder: [Note(title: "Доработки по ДЗ 11", text: "Файлы по папкам \nРасширения в один класс \nУбрать лишние пробелы"),
                              Note(title: "Доработки по ДЗ 12", text: "Если несколько раз понажимать плей или паузу, то таймер с анимацией рассинхзронизируются"),
                              Note(title: "Доработки по ДЗ 13", text: "Не очень хорошая практика в данной домашке использовать Assets для вообще всех иконок"),
                              Note(title: "Доработки по ДЗ 14", text: "Нужно немного подправить выравнивание (скриншот на сайте)")
@@ -95,7 +95,7 @@ extension NotesFolder {
 
         NotesFolder(title: "Для себя",
                     folder: [Note(title: "MVP", text: "MVP является первым паттерном, выявляющим проблему сборки, которая происходит из-за наличия трех действительно отдельных слоев."),
-                             Note(title: "Git полезные команды", text: "git commit \n git pull \n git add")
+                             Note(title: "Git полезные команды", text: "git commit \ngit pull \ngit add")
                             ]),
     ]
 }
