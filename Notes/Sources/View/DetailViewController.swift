@@ -63,7 +63,7 @@ class DetailViewController: UIViewController {
     }
 
     @objc func buttonTapped() {
-        // Any action
+        print("Нажата кнопка редактирования")
     }
 
 }
