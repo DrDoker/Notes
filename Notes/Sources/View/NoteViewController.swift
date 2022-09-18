@@ -71,7 +71,6 @@ class NoteViewController: UIViewController {
 extension NoteViewController {
     func setupNote() {
         noteTitle.text = presenter?.note?.title
-        noteSubtitle.text = presenter?.note?.subtitle
         noteText.text = presenter?.note?.text
     }
 }
