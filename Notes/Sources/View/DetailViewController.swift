@@ -79,8 +79,9 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let note = self.presenter?.folder?.folder[indexPath.row] else { return UITableViewCell() }
 
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         cell.textLabel?.text = note.title
+        cell.detailTextLabel?.text = note.text
         cell.imageView?.image = UIImage(systemName: "note.text")
         cell.tintColor = .systemYellow
         cell.accessoryType = .disclosureIndicator
