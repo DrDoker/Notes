@@ -24,7 +24,7 @@ class DetailPresenter: DetailPresenterProtocol {
         self.router = router
         self.note = note
     }
-
+    
     func showMenu() {
         router?.popToRoot()
     }

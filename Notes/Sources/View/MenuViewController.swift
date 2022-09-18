@@ -9,19 +9,19 @@ import UIKit
 import SnapKit
 
 class MenuViewController: UIViewController {
-
+    
     // MARK: - Private properties
-
+    
     var presenter: MainPresenterProtocol?
-
+    
     // MARK: - Outlets
-
+    
     private lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.placeholder = "Search"
         return search
     }()
-
+    
     private lazy var notesTable: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -29,18 +29,18 @@ class MenuViewController: UIViewController {
         table.delegate = self
         return table
     }()
-
+    
     // MARK: - Lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavBar()
         setupHierarchy()
         setupLayout()
     }
-
+    
     // MARK: - Setups
-
+    
     private func setupNavBar() {
         title = "Notes"
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -51,21 +51,21 @@ class MenuViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .systemYellow
         navigationItem.searchController = searchController
     }
-
+    
     private func setupHierarchy() {
         view.addSubview(notesTable)
     }
-
+    
     private func setupLayout() {
         notesTable.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view)
         }
     }
-
+    
     @objc func buttonTapped() {
         // Any action
     }
-
+    
 }
 
 extension MenuViewController {
@@ -80,27 +80,27 @@ extension MenuViewController {
     }
 }
 
-    // MARK: - Extensions
+// MARK: - Extensions
 
 extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
-
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         self.presenter?.getNumberOfSections() ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.presenter?.getNumberOfRow(section: section) ?? 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let note = self.presenter?.notes[indexPath.section][indexPath.row] else { return UITableViewCell() }
+        guard let note = self.presenter?.notes[indexPath.section].group[indexPath.row] else { return UITableViewCell() }
         return setNoteCell(notes: note)
     }
-
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
@@ -113,7 +113,7 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             return ""
         }
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else { return }
         headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -128,11 +128,11 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
             headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeFirstLetter()
         }
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let note = self.presenter?.notes[indexPath.section][indexPath.row]
+        let note = self.presenter?.notes[indexPath.section].group[indexPath.row]
         presenter?.showDetail(data: note)
     }
 }
