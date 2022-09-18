@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class MenuViewController: UIViewController {
+class MainGroupsViewController: UIViewController {
     
     // MARK: - Private properties
     
-    var presenter: MainPresenterProtocol?
+    var presenter: GroupsPresenterProtocol?
     
     // MARK: - Outlets
     
@@ -69,7 +69,7 @@ class MenuViewController: UIViewController {
 
 // MARK: - Extensions
 
-extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
+extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         self.presenter?.getNumberOfSections() ?? 0
@@ -94,13 +94,11 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let groupTitle = presenter?.getGroupTitle(section: section)
+
         switch section {
-        case 0:
-            return presenter?.goups[section].title
-        case 1:
-            return presenter?.goups[section].title
-        case 2:
-            return presenter?.goups[section].title
+        case 0, 1, 2 :
+            return groupTitle
         default:
             return ""
         }
@@ -123,9 +121,8 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let note = self.presenter?.goups[indexPath.section].group[indexPath.row]
-        presenter?.showDetail(data: note)
+
+        presenter?.showDetail(index: indexPath)
     }
 }
 

@@ -17,16 +17,16 @@ protocol BuilderProtocol {
 class ModuleBuilder: BuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController {
         let model = NotesGroup.groups
-        let view = MenuViewController()
-        let presenter = Presenter(view: view, notes: model, router: router)
+        let view = MainGroupsViewController()
+        let presenter = GroupsPresenter(view: view, goups: model, router: router)
         view.presenter = presenter
         return view
     }
     
     func createDetailModule(folder: NotesFolder?, router: RouterProtocol) -> UIViewController {
         let model = folder
-        let view = DetailViewController()
-        let presenter = DetailPresenter(view: view, folder: model, router: router)
+        let view = FolderViewController()
+        let presenter = FolderPresenter(view: view, folder: model, router: router)
         view.presenter = presenter
         return view
     }

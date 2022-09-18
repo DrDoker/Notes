@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class DetailViewController: UIViewController {
+class FolderViewController: UIViewController {
 
     // MARK: - Private properties
 
-    var presenter: DetailPresenterProtocol?
+    var presenter: FolderPresenterProtocol?
 
     // MARK: - Outlets
 
@@ -42,7 +42,7 @@ class DetailViewController: UIViewController {
     // MARK: - Setups
 
     private func setupNavBar() {
-        title = presenter?.folder?.title
+        title = presenter?.getFolderTitle()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",
                                                             style: .done,
@@ -70,7 +70,7 @@ class DetailViewController: UIViewController {
 
 // MARK: - Extensions
 
-extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+extension FolderViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.presenter?.getNumberOfRow() ?? 0
@@ -108,8 +108,7 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        let note = self.presenter?.folder?.folder[indexPath.row]
-        presenter?.showNote(data: note)
+        presenter?.showNote(index: indexPath)
     }
 }
 

@@ -7,22 +7,20 @@
 
 import Foundation
 
-protocol DetailPresenterProtocol: AnyObject {
-    var folder: NotesFolder? { get }
-
-    init(view: DetailViewController, folder: NotesFolder?, router: RouterProtocol)
+protocol FolderPresenterProtocol: AnyObject {
     func getNumberOfRow() -> Int
     func getTitle(for index: IndexPath) -> String
     func getText(for index: IndexPath) -> String
-    func showNote(data: Note?)
+    func getFolderTitle() -> String
+    func showNote(index: IndexPath)
 }
 
-class DetailPresenter: DetailPresenterProtocol {
-    weak var view: DetailViewController?
+class FolderPresenter: FolderPresenterProtocol {
+    weak var view: FolderViewController?
     var router: RouterProtocol?
-    let folder: NotesFolder?
+    private let folder: NotesFolder?
 
-    required init(view: DetailViewController, folder: NotesFolder?, router: RouterProtocol) {
+    required init(view: FolderViewController, folder: NotesFolder?, router: RouterProtocol) {
         self.view = view
         self.router = router
         self.folder = folder
@@ -40,7 +38,12 @@ class DetailPresenter: DetailPresenterProtocol {
         return folder?.folder[index.row].text ?? ""
     }
 
-    func showNote(data: Note?) {
-        router?.showNote(note: data)
+    func getFolderTitle() -> String {
+        return folder?.title ?? ""
+    }
+
+    func showNote(index: IndexPath) {
+        let note = folder?.folder[index.row]
+        router?.showNote(note: note)
     }
 }
