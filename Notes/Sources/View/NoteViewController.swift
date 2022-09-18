@@ -20,7 +20,6 @@ class NoteViewController: UIViewController {
         let lable = UILabel()
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        lable.text = presenter?.note?.title
         return lable
     }()
 
@@ -28,7 +27,6 @@ class NoteViewController: UIViewController {
         let lable = UILabel()
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        lable.text = presenter?.note?.subtitle
         return lable
     }()
 
@@ -36,7 +34,6 @@ class NoteViewController: UIViewController {
         let lable = UILabel()
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        lable.text = presenter?.note?.text
         return lable
     }()
 
@@ -48,6 +45,7 @@ class NoteViewController: UIViewController {
 
         setupHierarchy()
         setupLayout()
+        setupNote()
     }
 
     // MARK: - Setup
@@ -77,4 +75,10 @@ class NoteViewController: UIViewController {
     }
 }
 
-
+extension NoteViewController {
+    func setupNote() {
+        noteTitle.text = presenter?.note?.title
+        noteSubtitle.text = presenter?.note?.subtitle
+        noteText.text = presenter?.note?.text
+    }
+}
