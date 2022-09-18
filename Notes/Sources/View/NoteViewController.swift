@@ -21,7 +21,6 @@ class NoteViewController: UIViewController {
         let lable = UILabel()
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        lable.text = presenter?.note?.title
         lable.numberOfLines = 0
         return lable
     }()
@@ -30,7 +29,6 @@ class NoteViewController: UIViewController {
         let lable = UILabel()
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 17, weight: .regular)
-        lable.text = presenter?.note?.text
         lable.numberOfLines = 0
         lable.textAlignment = .natural
         return lable
@@ -70,7 +68,7 @@ class NoteViewController: UIViewController {
 
 extension NoteViewController {
     func setupNote() {
-        noteTitle.text = presenter?.note?.title
-        noteText.text = presenter?.note?.text
+        noteTitle.text = presenter?.getTitle()
+        noteText.text = presenter?.getText()
     }
 }

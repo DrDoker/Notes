@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol MainPresenterProtocol: AnyObject {
+protocol GroupsPresenterProtocol: AnyObject {
     func getNumberOfSections() -> Int
     func getNumberOfRow(section: Int) -> Int
     func getTitle(for index: IndexPath) -> String
@@ -16,12 +16,12 @@ protocol MainPresenterProtocol: AnyObject {
     func showDetail(index: IndexPath)
 }
 
-class Presenter: MainPresenterProtocol {
-    weak var view: GroupViewController?
+class GroupsPresenter: GroupsPresenterProtocol {
+    weak var view: MainGroupsViewController?
     var router: RouterProtocol?
     let goups: [NotesGroup]
     
-    required init(view: GroupViewController, goups: [NotesGroup], router: RouterProtocol) {
+    required init(view: MainGroupsViewController, goups: [NotesGroup], router: RouterProtocol) {
         self.view = view
         self.router = router
         self.goups = goups
