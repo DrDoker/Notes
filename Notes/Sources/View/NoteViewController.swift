@@ -21,14 +21,7 @@ class NoteViewController: UIViewController {
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         lable.text = presenter?.note?.title
-        return lable
-    }()
-
-    private lazy var noteSubtitle: UILabel = {
-        let lable = UILabel()
-        lable.textColor = .black
-        lable.font = UIFont.systemFont(ofSize: 24, weight: .medium)
-        lable.text = presenter?.note?.subtitle
+        lable.numberOfLines = 0
         return lable
     }()
 
@@ -37,6 +30,8 @@ class NoteViewController: UIViewController {
         lable.textColor = .black
         lable.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         lable.text = presenter?.note?.text
+        lable.numberOfLines = 0
+        lable.textAlignment = .natural
         return lable
     }()
 
@@ -54,24 +49,19 @@ class NoteViewController: UIViewController {
 
     private func setupHierarchy() {
         view.addSubview(noteTitle)
-        view.addSubview(noteSubtitle)
         view.addSubview(noteText)
     }
 
     private func setupLayout() {
 
         noteTitle.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-150)
-        }
-
-        noteSubtitle.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-100)
+            make.centerY.equalTo(view.snp.centerY).multipliedBy(0.25)
+            make.left.equalTo(view.snp.left).offset(20)
         }
 
         noteText.snp.makeConstraints { make in
             make.center.equalTo(view)
+            make.width.equalTo(view.snp.width).multipliedBy(0.8)
         }
 
     }
