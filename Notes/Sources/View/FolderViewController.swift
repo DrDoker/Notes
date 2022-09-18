@@ -108,7 +108,7 @@ extension FolderViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        presenter?.showNote(index: indexPath)
+        presenter?.showNote(for: indexPath)
     }
 }
 

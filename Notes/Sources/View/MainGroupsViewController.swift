@@ -76,7 +76,7 @@ extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.presenter?.getNumberOfRow(section: section) ?? 0
+        self.presenter?.getNumberOfRow(for: section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +94,7 @@ extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let groupTitle = presenter?.getGroupTitle(section: section)
+        let groupTitle = presenter?.getGroupTitle(for: section)
 
         switch section {
         case 0, 1, 2 :
@@ -122,7 +122,7 @@ extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
-        presenter?.showDetail(index: indexPath)
+        presenter?.showDetail(for: indexPath)
     }
 }
 

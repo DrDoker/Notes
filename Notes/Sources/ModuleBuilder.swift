@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 protocol BuilderProtocol {
-    func createMainModule(router: RouterProtocol) -> UIViewController
-    func createDetailModule(folder: NotesFolder?, router: RouterProtocol) -> UIViewController
+    func createMainGroupsModule(router: RouterProtocol) -> UIViewController
+    func createFolderModule(folder: NotesFolder?, router: RouterProtocol) -> UIViewController
     func createNoteModule(note: Note?, router: RouterProtocol) -> UIViewController
 }
 
 class ModuleBuilder: BuilderProtocol {
-    func createMainModule(router: RouterProtocol) -> UIViewController {
+    func createMainGroupsModule(router: RouterProtocol) -> UIViewController {
         let model = NotesGroup.groups
         let view = MainGroupsViewController()
         let presenter = GroupsPresenter(view: view, goups: model, router: router)
@@ -23,7 +23,7 @@ class ModuleBuilder: BuilderProtocol {
         return view
     }
     
-    func createDetailModule(folder: NotesFolder?, router: RouterProtocol) -> UIViewController {
+    func createFolderModule(folder: NotesFolder?, router: RouterProtocol) -> UIViewController {
         let model = folder
         let view = FolderViewController()
         let presenter = FolderPresenter(view: view, folder: model, router: router)

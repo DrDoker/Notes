@@ -9,11 +9,11 @@ import Foundation
 
 protocol GroupsPresenterProtocol: AnyObject {
     func getNumberOfSections() -> Int
-    func getNumberOfRow(section: Int) -> Int
+    func getNumberOfRow(for section: Int) -> Int
     func getTitle(for index: IndexPath) -> String
     func getCountNotes(for index: IndexPath) -> String
-    func getGroupTitle(section: Int) -> String
-    func showDetail(index: IndexPath)
+    func getGroupTitle(for section: Int) -> String
+    func showDetail(for index: IndexPath)
 }
 
 class GroupsPresenter: GroupsPresenterProtocol {
@@ -31,7 +31,7 @@ class GroupsPresenter: GroupsPresenterProtocol {
         goups.count
     }
     
-    func getNumberOfRow(section: Int) -> Int {
+    func getNumberOfRow(for section: Int) -> Int {
         goups[section].group.count
     }
 
@@ -44,12 +44,12 @@ class GroupsPresenter: GroupsPresenterProtocol {
         return stringCounts
     }
 
-    func getGroupTitle(section: Int) -> String {
+    func getGroupTitle(for section: Int) -> String {
         return goups[section].title
     }
 
-    func showDetail(index: IndexPath) {
+    func showDetail(for index: IndexPath) {
         let folder = goups[index.section].group[index.row]
-        router?.showDetail(folder: folder)
+        router?.showFolder(folder: folder)
     }
 }
