@@ -16,7 +16,7 @@ protocol BuilderProtocol {
 
 class ModuleBuilder: BuilderProtocol {
     func createMainModule(router: RouterProtocol) -> UIViewController {
-        let model = NotesGroup.goups
+        let model = NotesGroup.groups
         let view = MenuViewController()
         let presenter = Presenter(view: view, notes: model, router: router)
         view.presenter = presenter

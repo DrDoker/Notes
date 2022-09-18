@@ -65,7 +65,6 @@ class MenuViewController: UIViewController {
     @objc func buttonTapped() {
         // Any action
     }
-    
 }
 
 // MARK: - Extensions
@@ -81,11 +80,9 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let folder = self.presenter?.goups[indexPath.section].group[indexPath.row] else { return UITableViewCell() }
-
         let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = folder.title
-        cell.detailTextLabel?.text = String(folder.countNotes)
+        cell.textLabel?.text = presenter?.getTitle(for: indexPath)
+        cell.detailTextLabel?.text = presenter?.getCountNotes(for: indexPath)
         cell.imageView?.image = UIImage(systemName: "folder")
         cell.tintColor = .systemYellow
         cell.accessoryType = .disclosureIndicator

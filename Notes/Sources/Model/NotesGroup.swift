@@ -13,7 +13,7 @@ struct NotesGroup {
 }
 
 extension NotesGroup {
-    static let goups: [NotesGroup] = [
+    static let groups: [NotesGroup] = [
         NotesGroup(title: "iCloud", group: NotesFolder.firstGoupFolders),
         NotesGroup(title: "Private notes", group: NotesFolder.secondGoupFolders),
         NotesGroup(title: "Other notes", group: NotesFolder.thirdGoupFolders)

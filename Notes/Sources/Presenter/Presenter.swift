@@ -13,6 +13,8 @@ protocol MainPresenterProtocol: AnyObject {
     init(view: MenuViewController, notes: [NotesGroup], router: RouterProtocol)
     func getNumberOfSections() -> Int
     func getNumberOfRow(section: Int) -> Int
+    func getTitle(for index: IndexPath) -> String
+    func getCountNotes(for index: IndexPath) -> String
     func showDetail(data: NotesFolder?)
 }
 
@@ -34,7 +36,16 @@ class Presenter: MainPresenterProtocol {
     func getNumberOfRow(section: Int) -> Int {
         goups[section].group.count
     }
-    
+
+    func getTitle(for index: IndexPath) -> String {
+        return goups[index.section].group[index.row].title
+    }
+
+    func getCountNotes(for index: IndexPath) -> String {
+        let stringCounts = String(goups[index.section].group[index.row].countNotes)
+        return stringCounts
+    }
+
     func showDetail(data: NotesFolder?) {
         router?.showDetail(folder: data)
     }
