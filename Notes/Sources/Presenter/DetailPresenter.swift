@@ -8,24 +8,29 @@
 import Foundation
 
 protocol DetailPresenterProtocol: AnyObject {
-    var note: Note? { get }
+    var folder: NotesFolder? { get }
 
-    init(view: DetailViewController, note: Note?, router: RouterProtocol)
-    func showMenu()
+    init(view: DetailViewController, folder: NotesFolder?, router: RouterProtocol)
+    func getNumberOfRow() -> Int
+    func showNote(data: Note?)
 }
 
 class DetailPresenter: DetailPresenterProtocol {
     weak var view: DetailViewController?
     var router: RouterProtocol?
-    let note: Note?
+    let folder: NotesFolder?
 
-    required init(view: DetailViewController, note: Note?, router: RouterProtocol) {
+    required init(view: DetailViewController, folder: NotesFolder?, router: RouterProtocol) {
         self.view = view
         self.router = router
-        self.note = note
+        self.folder = folder
     }
-    
-    func showMenu() {
-        router?.popToRoot()
+
+    func getNumberOfRow() -> Int {
+        folder?.countNotes ?? 0
+    }
+
+    func showNote(data: Note?) {
+        router?.showNote(note: data)
     }
 }

@@ -6,70 +6,113 @@
 //
 
 import UIKit
+import SnapKit
 
 class DetailViewController: UIViewController {
-    
+
     // MARK: - Private properties
-    
+
     var presenter: DetailPresenterProtocol?
-    
+
     // MARK: - Outlets
-    
-    private lazy var detailTitleText: UILabel = {
-        let lable = UILabel()
-        lable.textColor = .black
-        lable.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-        lable.text = presenter?.note?.title
-        return lable
+
+    private lazy var searchController: UISearchController = {
+        let search = UISearchController()
+        search.searchBar.placeholder = "Search"
+        return search
     }()
-    
-    private lazy var menuButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Menu", for: .normal)
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 10
-        button.backgroundColor = .systemRed
-        button.addTarget(self, action: #selector(showMenu), for: .touchUpInside)
-        return button
+
+    private lazy var notesTable: UITableView = {
+        let table = UITableView(frame: .zero, style: .insetGrouped)
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.dataSource = self
+        table.delegate = self
+        return table
     }()
-    
+
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        
+        setupNavBar()
         setupHierarchy()
         setupLayout()
     }
-    
-    // MARK: - Setup
-    
-    private func setupHierarchy() {
-        view.addSubview(detailTitleText)
-        view.addSubview(menuButton)
+
+    // MARK: - Setups
+
+    private func setupNavBar() {
+        title = presenter?.folder?.title
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(buttonTapped))
+        navigationController?.navigationBar.tintColor = .systemYellow
+        navigationItem.searchController = searchController
     }
-    
+
+    private func setupHierarchy() {
+        view.addSubview(notesTable)
+    }
+
     private func setupLayout() {
-        
-        detailTitleText.snp.makeConstraints { make in
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(-100)
+        notesTable.snp.makeConstraints { make in
+            make.top.left.right.bottom.equalTo(view)
         }
-        
-        menuButton.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.width.equalTo(100)
-            make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(100)
+    }
+
+    @objc func buttonTapped() {
+        // Any action
+    }
+
+}
+
+// MARK: - Extensions
+
+extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.presenter?.getNumberOfRow() ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let note = self.presenter?.folder?.folder[indexPath.row] else { return UITableViewCell() }
+
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        cell.textLabel?.text = note.title
+        cell.imageView?.image = UIImage(systemName: "note.text")
+        cell.tintColor = .systemYellow
+        cell.accessoryType = .disclosureIndicator
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else { return }
+        headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        headerView.textLabel?.frame = CGRect(x: headerView.bounds.origin.x + 20,
+                                             y: headerView.bounds.origin.y,
+                                             width: 100,
+                                             height: headerView.bounds.height)
+        headerView.textLabel?.textColor = .black
+        if section == 0 {
+            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeSecondLetter()
+        } else {
+            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeFirstLetter()
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        let note = self.presenter?.folder?.folder[indexPath.row]
+        presenter?.showNote(data: note)
     }
 }
 
-extension DetailViewController {
-    @objc func showMenu() {
-        presenter?.showMenu()
-    }
-}
+
 

@@ -22,7 +22,7 @@ class MenuViewController: UIViewController {
         return search
     }()
     
-    private lazy var notesTable: UITableView = {
+    private lazy var groupsTable: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.dataSource = self
@@ -53,11 +53,11 @@ class MenuViewController: UIViewController {
     }
     
     private func setupHierarchy() {
-        view.addSubview(notesTable)
+        view.addSubview(groupsTable)
     }
     
     private func setupLayout() {
-        notesTable.snp.makeConstraints { make in
+        groupsTable.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view)
         }
     }
@@ -66,18 +66,6 @@ class MenuViewController: UIViewController {
         // Any action
     }
     
-}
-
-extension MenuViewController {
-    func setNoteCell(notes: Note) -> UITableViewCell {
-        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
-        cell.textLabel?.text = notes.title
-        cell.detailTextLabel?.text = notes.subtitle
-        cell.imageView?.image = UIImage(systemName: "folder")
-        cell.tintColor = .systemYellow
-        cell.accessoryType = .disclosureIndicator
-        return cell
-    }
 }
 
 // MARK: - Extensions
@@ -93,8 +81,15 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let note = self.presenter?.notes[indexPath.section].group[indexPath.row] else { return UITableViewCell() }
-        return setNoteCell(notes: note)
+        guard let folder = self.presenter?.goups[indexPath.section].group[indexPath.row] else { return UITableViewCell() }
+
+        let cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
+        cell.textLabel?.text = folder.title
+        cell.detailTextLabel?.text = String(folder.countNotes)
+        cell.imageView?.image = UIImage(systemName: "folder")
+        cell.tintColor = .systemYellow
+        cell.accessoryType = .disclosureIndicator
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -104,11 +99,11 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            return "ICloud"
+            return presenter?.goups[section].title
         case 1:
-            return "Private notes"
+            return presenter?.goups[section].title
         case 2:
-            return "Other notes"
+            return presenter?.goups[section].title
         default:
             return ""
         }
@@ -132,7 +127,7 @@ extension MenuViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let note = self.presenter?.notes[indexPath.section].group[indexPath.row]
+        let note = self.presenter?.goups[indexPath.section].group[indexPath.row]
         presenter?.showDetail(data: note)
     }
 }
