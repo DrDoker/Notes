@@ -16,6 +16,7 @@ class NoteViewController: UIViewController {
     var presenter: NotePresenterProtocol?
 
     // MARK: - Outlets
+
     private lazy var noteTitle: UILabel = {
         let lable = UILabel()
         lable.textColor = .black
@@ -40,7 +41,6 @@ class NoteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
         setupHierarchy()
         setupLayout()
         setupNote()
@@ -61,10 +61,10 @@ class NoteViewController: UIViewController {
         }
 
         noteText.snp.makeConstraints { make in
-            make.center.equalTo(view)
-            make.width.equalTo(view.snp.width).multipliedBy(0.8)
+            make.top.equalTo(noteTitle.snp.bottom).offset(10)
+            make.left.equalTo(view.snp.left).offset(20)
+            make.right.equalTo(view.snp.right).offset(20)
         }
-
     }
 }
 
