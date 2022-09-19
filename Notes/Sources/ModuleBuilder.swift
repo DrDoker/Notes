@@ -18,7 +18,7 @@ class ModuleBuilder: BuilderProtocol {
     func createMainGroupsModule(router: RouterProtocol) -> UIViewController {
         let model = NotesGroup.groups
         let view = MainGroupsViewController()
-        let presenter = GroupsPresenter(view: view, goups: model, router: router)
+        let presenter = GroupsPresenter(view: view, groups: model, router: router)
         view.presenter = presenter
         return view
     }

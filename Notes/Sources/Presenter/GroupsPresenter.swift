@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol MainViewProtocol: AnyObject {
+    func reloadTable()
+}
+
 protocol GroupsPresenterProtocol: AnyObject {
     func getNumberOfSections() -> Int
     func getNumberOfRow(for section: Int) -> Int
@@ -17,39 +21,39 @@ protocol GroupsPresenterProtocol: AnyObject {
 }
 
 class GroupsPresenter: GroupsPresenterProtocol {
-    weak var view: MainGroupsViewController?
+    weak var view: MainViewProtocol?
     var router: RouterProtocol?
-    private let goups: [NotesGroup]
+    private let groups: [NotesGroup]
     
-    required init(view: MainGroupsViewController, goups: [NotesGroup], router: RouterProtocol) {
+    required init(view: MainViewProtocol, groups: [NotesGroup], router: RouterProtocol) {
         self.view = view
         self.router = router
-        self.goups = goups
+        self.groups = groups
     }
     
     func getNumberOfSections() -> Int {
-        goups.count
+        groups.count
     }
     
     func getNumberOfRow(for section: Int) -> Int {
-        goups[section].group.count
+        groups[section].group.count
     }
 
     func getTitle(for index: IndexPath) -> String {
-        return goups[index.section].group[index.row].title
+        return groups[index.section].group[index.row].title
     }
 
     func getCountNotes(for index: IndexPath) -> String {
-        let stringCounts = String(goups[index.section].group[index.row].countNotes)
+        let stringCounts = String(groups[index.section].group[index.row].countNotes)
         return stringCounts
     }
 
     func getGroupTitle(for section: Int) -> String {
-        return goups[section].title
+        return groups[section].title
     }
 
     func showDetail(for index: IndexPath) {
-        let folder = goups[index.section].group[index.row]
+        let folder = groups[index.section].group[index.row]
         router?.showFolder(folder: folder)
     }
 }

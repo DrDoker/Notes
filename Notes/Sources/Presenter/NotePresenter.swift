@@ -7,17 +7,21 @@
 
 import Foundation
 
+protocol NoteViewProtocol: AnyObject {
+    // Any function
+}
+
 protocol NotePresenterProtocol: AnyObject {
     func getTitle() -> String
     func getText() -> String
 }
 
 class NotePresenter: NotePresenterProtocol {
-    weak var view: NoteViewController?
+    weak var view: NoteViewProtocol?
     var router: RouterProtocol?
     private let note: Note?
 
-    required init(view: NoteViewController, note: Note?, router: RouterProtocol) {
+    required init(view: NoteViewProtocol, note: Note?, router: RouterProtocol) {
         self.view = view
         self.router = router
         self.note = note
