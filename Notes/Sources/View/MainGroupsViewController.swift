@@ -30,6 +30,30 @@ class MainGroupsViewController: UIViewController {
         table.delegate = self
         return table
     }()
+
+    private lazy var bottomView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        return view
+    }()
+
+    private lazy var leftButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "folder.badge.plus")
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemYellow
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 1.3)
+        return button
+    }()
+
+    private lazy var rightButton: UIButton = {
+        let button = UIButton()
+        let image = UIImage(systemName: "square.and.pencil")
+        button.setImage(image, for: .normal)
+        button.tintColor = .systemYellow
+        button.imageView?.layer.transform = CATransform3DMakeScale(1.3, 1.3, 1.3)
+        return button
+    }()
     
     // MARK: - Lifecycle
     
@@ -60,11 +84,31 @@ class MainGroupsViewController: UIViewController {
     
     private func setupHierarchy() {
         view.addSubview(groupsTable)
+        view.addSubview(bottomView)
+        bottomView.addSubview(leftButton)
+        bottomView.addSubview(rightButton)
     }
     
     private func setupLayout() {
         groupsTable.snp.makeConstraints { make in
             make.top.left.right.bottom.equalTo(view)
+        }
+
+        bottomView.snp.makeConstraints { make in
+            make.left.right.bottom.equalTo(view)
+            make.top.equalTo(view.snp.bottom).multipliedBy(0.9)
+        }
+
+        leftButton.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(20)
+            make.left.equalTo(bottomView.snp.left).offset(20)
+            make.width.height.equalTo(40)
+        }
+
+        rightButton.snp.makeConstraints { make in
+            make.top.equalTo(bottomView.snp.top).offset(20)
+            make.right.equalTo(bottomView.snp.right).offset(-20)
+            make.width.height.equalTo(40)
         }
     }
     
