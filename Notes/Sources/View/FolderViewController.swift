@@ -19,6 +19,7 @@ class FolderViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.placeholder = "Search"
+        search.searchBar.delegate = self
         return search
     }()
 
@@ -76,9 +77,14 @@ class FolderViewController: UIViewController {
 // MARK: - Extensions
 
 extension FolderViewController: FolderViewProtocol {
-
     func reloadTable() {
         notesTable.reloadData()
+    }
+}
+
+extension FolderViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.showSearchResults(for: searchText)
     }
 }
 
