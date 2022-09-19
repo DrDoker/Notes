@@ -108,21 +108,6 @@ extension FolderViewController: UITableViewDataSource, UITableViewDelegate {
         return 40
     }
 
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let headerView = view as? UITableViewHeaderFooterView else { return }
-        headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        headerView.textLabel?.frame = CGRect(x: headerView.bounds.origin.x + 20,
-                                             y: headerView.bounds.origin.y,
-                                             width: 100,
-                                             height: headerView.bounds.height)
-        headerView.textLabel?.textColor = .black
-        if section == 0 {
-            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeSecondLetter()
-        } else {
-            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeFirstLetter()
-        }
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 
