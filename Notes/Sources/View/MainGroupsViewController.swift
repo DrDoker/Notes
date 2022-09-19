@@ -19,6 +19,7 @@ class MainGroupsViewController: UIViewController {
     private lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.placeholder = "Search"
+        search.searchBar.delegate = self
         return search
     }()
     
@@ -75,9 +76,14 @@ class MainGroupsViewController: UIViewController {
 // MARK: - Extensions
 
 extension MainGroupsViewController: MainViewProtocol {
-
     func reloadTable() {
         groupsTable.reloadData()
+    }
+}
+
+extension MainGroupsViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.showSearchResults(for: searchText)
     }
 }
 
