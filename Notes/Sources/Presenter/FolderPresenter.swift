@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol FolderViewProtocol: AnyObject {
+    func reloadTable()
+}
+
 protocol FolderPresenterProtocol: AnyObject {
     func getNumberOfRow() -> Int
     func getTitle(for index: IndexPath) -> String
@@ -16,11 +20,11 @@ protocol FolderPresenterProtocol: AnyObject {
 }
 
 class FolderPresenter: FolderPresenterProtocol {
-    weak var view: FolderViewController?
+    weak var view: FolderViewProtocol?
     var router: RouterProtocol?
     private let folder: NotesFolder?
 
-    required init(view: FolderViewController, folder: NotesFolder?, router: RouterProtocol) {
+    required init(view: FolderViewProtocol, folder: NotesFolder?, router: RouterProtocol) {
         self.view = view
         self.router = router
         self.folder = folder

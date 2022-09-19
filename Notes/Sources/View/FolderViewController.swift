@@ -39,6 +39,11 @@ class FolderViewController: UIViewController {
         setupLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadTable()
+    }
+
     // MARK: - Setups
 
     private func setupNavBar() {
@@ -69,6 +74,13 @@ class FolderViewController: UIViewController {
 }
 
 // MARK: - Extensions
+
+extension FolderViewController: FolderViewProtocol {
+
+    func reloadTable() {
+        notesTable.reloadData()
+    }
+}
 
 extension FolderViewController: UITableViewDataSource, UITableViewDelegate {
 

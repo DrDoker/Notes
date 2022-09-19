@@ -38,6 +38,11 @@ class MainGroupsViewController: UIViewController {
         setupHierarchy()
         setupLayout()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadTable()
+    }
     
     // MARK: - Setups
     
@@ -68,6 +73,13 @@ class MainGroupsViewController: UIViewController {
 }
 
 // MARK: - Extensions
+
+extension MainGroupsViewController: MainViewProtocol {
+
+    func reloadTable() {
+        groupsTable.reloadData()
+    }
+}
 
 extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     
