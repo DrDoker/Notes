@@ -25,6 +25,7 @@ class MainGroupsViewController: UIViewController {
     
     private lazy var groupsTable: UITableView = {
         let table = UITableView(frame: .zero, style: .insetGrouped)
+        table.register(GroupsHeaderView.self, forHeaderFooterViewReuseIdentifier: "header")
         table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.dataSource = self
         table.delegate = self
@@ -154,31 +155,19 @@ extension MainGroupsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as! GroupsHeaderView
         let groupTitle = presenter?.getGroupTitle(for: section)
 
         switch section {
         case 0, 1, 2 :
-            return groupTitle
+            view.label.text = groupTitle
         default:
-            return ""
+            view.label.text = ""
         }
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let headerView = view as? UITableViewHeaderFooterView else { return }
-        headerView.textLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        headerView.textLabel?.frame = CGRect(x: headerView.bounds.origin.x + 20,
-                                             y: headerView.bounds.origin.y,
-                                             width: 100,
-                                             height: headerView.bounds.height)
-        headerView.textLabel?.textColor = .black
-        if section == 0 {
-            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeSecondLetter()
-        } else {
-            headerView.textLabel?.text = headerView.textLabel?.text?.capitalizeFirstLetter()
-        }
+
+        return view
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
