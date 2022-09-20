@@ -8,12 +8,11 @@
 import Foundation
 
 protocol NoteViewProtocol: AnyObject {
-    // Any function
+    func setupNote(with title: String, and text: String)
 }
 
 protocol NotePresenterProtocol: AnyObject {
-    func getTitle() -> String
-    func getText() -> String
+    func getData()
 }
 
 class NotePresenter: NotePresenterProtocol {
@@ -26,12 +25,10 @@ class NotePresenter: NotePresenterProtocol {
         self.router = router
         self.note = note
     }
-
-    func getTitle() -> String {
-        return note?.title ?? ""
-    }
-
-    func getText() -> String {
-        return note?.text ?? ""
+    
+    func getData() {
+        let title = note?.title ?? ""
+        let text = note?.text ?? ""
+        self.view?.setupNote(with: title, and: text)
     }
 }

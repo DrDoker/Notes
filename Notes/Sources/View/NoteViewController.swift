@@ -41,7 +41,7 @@ class NoteViewController: UIViewController {
         view.backgroundColor = .white
         setupHierarchy()
         setupLayout()
-        setupNote()
+        presenter?.getData()
     }
 
     // MARK: - Setup
@@ -69,12 +69,8 @@ class NoteViewController: UIViewController {
 // MARK: - Extensions
 
 extension NoteViewController: NoteViewProtocol {
-    // Any function
-}
-
-extension NoteViewController {
-    func setupNote() {
-        noteTitle.text = presenter?.getTitle()
-        noteText.text = presenter?.getText()
+    func setupNote(with title: String, and text: String) {
+        noteTitle.text = title
+        noteText.text = text
     }
 }

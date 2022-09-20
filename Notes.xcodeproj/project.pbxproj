@@ -94,8 +94,7 @@
 		9CB5D81628D3861900CA38D0 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				C5643DBA28D667450056837B /* Router.swift */,
-				C5643DB228D50E350056837B /* ModuleBuilder.swift */,
+				9CF6C86A28DA1E28000DF64A /* Helpers */,
 				9CB5D81728D3864900CA38D0 /* App */,
 				9CB5D81828D3865800CA38D0 /* Model */,
 				9CB5D81928D3865D00CA38D0 /* View */,
@@ -142,6 +141,15 @@
 				C5654ACF28D7444A00DCE2B0 /* NotePresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9CF6C86A28DA1E28000DF64A /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C5643DBA28D667450056837B /* Router.swift */,
+				C5643DB228D50E350056837B /* ModuleBuilder.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
