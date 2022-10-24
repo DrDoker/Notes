@@ -1,5 +1,5 @@
 # HW16-iOS7-Notes
-A simple Notes application. For practice with MVP architecture
+A simple Notes application. For practice with MVP architecture.
 
 <img src="https://user-images.githubusercontent.com/22889898/197639973-5720f052-44a7-4c7f-9e44-6f9547c74dc8.png" width="45%"></img> 
 <img src="https://user-images.githubusercontent.com/22889898/197639983-6e33b82f-efc9-412d-9c84-02e219eb89d8.png" width="45%"></img> 
