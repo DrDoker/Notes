@@ -1,3 +1,2 @@
 # HW16-iOS7-Notes
-Всем привет) 
-Давайте возьмём как основу этот проект. Для экспериментов с кодом или фич делайте ветки типа (feature/serhii-experiments). Потом будем сливать в девелопер.
+A simple Notes application. For practice with MVP architecture
