@@ -14,33 +14,41 @@ protocol RouterMain {
 
 protocol RouterProtocol: RouterMain {
     func initialViewController()
-    func showDetail(note: Note?)
+    func showFolder(folder: NotesFolder?)
+    func showNote(note: Note?)
     func popToRoot()
 }
 
 class Router: RouterProtocol {
     var navigationController: UINavigationController?
     var assemblyBuilder: BuilderProtocol?
-
+    
     init(navigationController: UINavigationController, assemblyBuilder: BuilderProtocol) {
         self.navigationController = navigationController
         self.assemblyBuilder = assemblyBuilder
     }
-
+    
     func initialViewController() {
         if let navigationController = navigationController {
-            guard let mainViewController = assemblyBuilder?.createMainModule(router: self) else { return }
+            guard let mainViewController = assemblyBuilder?.createMainGroupsModule(router: self) else { return }
             navigationController.viewControllers = [mainViewController]
         }
     }
-
-    func showDetail(note: Note?) {
+    
+    func showFolder(folder: NotesFolder?) {
         if let navigationController = navigationController {
-            guard let detailViewController = assemblyBuilder?.createDetailModule(note: note, router: self) else { return }
+            guard let detailViewController = assemblyBuilder?.createFolderModule(folder: folder, router: self) else { return }
             navigationController.pushViewController(detailViewController, animated: true)
         }
     }
 
+    func showNote(note: Note?) {
+        if let navigationController = navigationController {
+            guard let noteViewController = assemblyBuilder?.createNoteModule(note: note, router: self) else { return }
+            navigationController.pushViewController(noteViewController, animated: true)
+        }
+    }
+    
     func popToRoot() {
         if let navigationController = navigationController {
             navigationController.popToRootViewController(animated: true)
